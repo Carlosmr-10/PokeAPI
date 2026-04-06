@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
   // Función para obtener la lista de favoritos
   myFavorites() {
 
-    return this.apiService.favoritos();
+    return this.apiService.favorites();
   }
 
   // Función para filtrar los Pokémon según el término de búsqueda
@@ -104,7 +104,7 @@ export class AppComponent implements OnInit {
     // Filtro por favoritos
     if (this.showFavorites) {
 
-      const favs = this.apiService.favoritos();
+      const favs = this.apiService.favorites();
       result = result.filter(p => favs.includes(p.name));
     }
     this.filteredPokemon = result;

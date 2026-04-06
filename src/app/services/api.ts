@@ -7,7 +7,7 @@ import { PokeResponse, PokemonDetail } from '../components/pokemon.interface/pok
 export class ApiPokemon {
 
   private http = inject(HttpClient);
-  public favoritos = signal<string[]>([]);
+  public favorites = signal<string[]>([]);
 
   // Método para obtener la lista de Pokémon
   getData(): Observable<PokeResponse> {
@@ -24,15 +24,15 @@ export class ApiPokemon {
   // Método para alternar un Pokémon en la lista de favoritos
   toggleFavorite(name: string): void {
 
-    const actual = this.favoritos();
+    const actual = this.favorites();
 
     if (actual.includes(name)) {
 
-      this.favoritos.set(actual.filter(n => n !== name));
+      this.favorites.set(actual.filter(n => n !== name));
     } 
     else {
 
-      this.favoritos.set([...actual, name]);
+      this.favorites.set([...actual, name]);
     }
   }
 }

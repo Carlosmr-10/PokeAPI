@@ -1,59 +1,36 @@
-# Equipo
+# 151 PokéAPI Explorer 151
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Este proyecto es una aplicación web interactiva desarrollada con **Angular 21+** que permite explorar la base de datos de Pokémon utilizando la [PokeAPI](https://pokeapi.co/).
 
-## Development server
+## Arquitectura del Servicio (`ApiPokemon`)
 
-To start a local development server, run:
+El núcleo de la lógica de datos reside en el servicio `ApiPokemon` (`src/app/services/api.ts`).
 
-```bash
-ng serve
-```
+### 1. Comunicación con la API (HttpClient)
+El servicio utiliza el módulo `HttpClient` para realizar peticiones asíncronas.
+* **`getData()`**: Recupera la lista inicial de los primeros 800 Pokémon. Devuelve un `Observable<PokeResponse>`.
+* **`getDetailsByUrl(url)`**: Realiza una petición secundaria para obtener los detalles específicos (id, peso, altura, sprites) cuando el usuario selecciona un Pokémon.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 2. Gestión de Estado con Angular Signals
+En lugar de variables tradicionales, utilizamos **Signals** para manejar los "Favoritos".
+* **`public favorites = signal<string[]>([])`**: Esto crea un estado global reactivo. Cualquier componente que consuma este signal se actualizará automáticamente cuando la lista de favoritos cambie.
+* **`toggleFavorite(name)`**: Un método centralizado que añade o elimina un Pokémon de la lista, asegurando que la lógica de persistencia no esté dispersa por los componentes.
 
-## Code scaffolding
+## Estructura de Componentes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+La aplicación se divide en componentes especializados para mantener el código limpio y escalable:
 
-```bash
-ng generate component component-name
-```
+* **`App`**: Maneja la lógica de filtrado combinado (búsqueda por nombre + filtro de favoritos) y la comunicación entre el servicio y la vista.
+* **`Search`**: Un componente que emite eventos (`@Output`) cada vez que el usuario escribe, permitiendo una búsqueda en tiempo real.
+* **`List`**: Renderiza el grid de tarjetas. Recibe los datos mediante `@Input` y avisa al padre mediante `@Output` cuando se hace clic en una tarjeta o en el botón de favorito.
+* **`Header`**: Componente visual estático para la identidad de la aplicación.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Requisitos Técnicos Implementados
 
-```bash
-ng generate --help
-```
+* **Tipado Estricto**: Uso de interfaces personalizadas (`PokemonBase`, `PokemonDetail`, `PokeResponse`) para eliminar el uso de `any` y garantizar la seguridad del código.
+* **Control de Flujo Moderno**: Implementación de las nuevas directivas de Angular (`@if`, `@for`, `@else`) para un renderizado más eficiente.
+* **Feedback de Usuario**: Sistema de control de estados para mostrar mensajes de "Cargando..." o "No se encontraron resultados".
+* **Filtrado Combinado**: Lógica que permite filtrar por nombre dentro de la lista de favoritos seleccionados.
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+Desarrollado por Carlos Michelena Rueda como proyecto de aprendizaje en Angular.
