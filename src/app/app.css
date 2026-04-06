@@ -1,0 +1,223 @@
+
+:host {
+  display: block;
+  background-color: #e0e6ed; 
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: auto;
+  padding: 20px;
+}
+
+main {
+  max-width: 900px;
+  margin: 20px auto; 
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  min-height: auto; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: block; 
+  overflow: hidden; 
+}
+
+body {
+  background-color: #e0e6ed; 
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  border-radius: 15px;
+}
+
+h2 {
+  text-align: center;
+  color: #FFCC00; 
+  text-shadow: 2px 2px 0 #3264B4, -2px -2px 0 #3264B4, 2px -2px 0 #3264B4, -2px 2px 0 #3264B4;
+  font-size: 2.8rem;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.contenedor-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-pokemon {
+  background-color: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-pokemon.lista-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  text-align: left;
+}
+
+.img-mini {
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.tarjeta-pokemon.lista-item h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.tarjeta-pokemon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #E3350D;
+  transition: all 0.3s ease;
+}
+
+.tarjeta-pokemon:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(227, 53, 13, 0.3);
+  border-color: #E3350D;
+}
+
+.tarjeta-pokemon:hover::before {
+  height: 12px;
+}
+
+h3 {
+  margin: 0;
+  color: #333333;
+  text-transform: capitalize; 
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+p {
+  text-align: center;
+  color: #666;
+  font-size: 1.2rem;
+  grid-column: 1 / -1;
+}
+
+.btn-volver {
+  background-color: #3264B4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-volver:hover {
+  background-color: #234b8c;
+}
+
+.detalle {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.detalle img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2)); 
+}
+
+.contenedor-buscador {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+.input-busqueda {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: 2px solid #3264B4;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.input-busqueda:focus {
+  border-color: #FFCC00;
+  box-shadow: 0 4px 12px rgba(50, 100, 180, 0.2);
+  transform: scale(1.02);
+}
+
+.btn-fav {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+  transition: transform 0.2s;
+}
+
+.btn-fav:hover {
+  transform: scale(1.2);
+  background-color: #f0f0f0;
+}
+
+input {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.fav-counter {
+  background-color: #e0e6ed;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.header-acciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-filtro-fav {
+  background-color: #ffffff;
+  border: 2px solid #FFCC00;
+  color: #3264B4;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+}
+
+.btn-filtro-fav.active {
+  background-color: #FFCC00;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(255, 204, 0, 0.4);
+}
+
+.btn-filtro-fav:hover {
+  transform: scale(1.05);
+}

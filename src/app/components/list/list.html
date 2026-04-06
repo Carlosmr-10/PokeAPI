@@ -1,0 +1,21 @@
+<div class="contenedor-lista">
+
+  @for (pokemon of pokemons; track pokemon.name) {
+
+    <div class="tarjeta-pokemon" (click)="clickItem.emit(pokemon)">
+
+      <!-- Añadimos el nombre y la imagen del pokemon -->
+      <img [src]="getImg(pokemon.url)">
+      <h3>{{ pokemon.name }}</h3>
+
+      <!-- Boton para añadir el pokemon a favoritos -->
+      <button class="btn-fav" (click)="$event.stopPropagation(); toggleFav.emit(pokemon)">
+
+        {{ isFav(pokemon.name) ? '⭐' : '☆' }}
+
+      </button>
+
+    </div>
+  }
+
+</div>
